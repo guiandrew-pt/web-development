@@ -1,0 +1,32 @@
+<div class="form-group">
+    <label for="titleBook">Title:</label>
+    <input type="text" class="form-control" name="title" id="titleBook" aria-describedby="titleHelp" placeholder="Enter the book title" value="<%= bookToEdit.title %>">
+</div>
+
+<div class="form-group">
+    <label for="authorBook">Author:</label>
+    <input type="text" class="form-control" name="author" id="authorBook" aria-describedby="authorHelp" placeholder="Enter the book author" value="<%= bookToEdit.author %>">
+</div>
+
+<div class="form-group">
+    <label for="descriptionBook">Description</label>
+    <textarea class="form-control" name="description" id="descriptionBook" aria-describedby="descriptionHelp" rows="3" placeholder="Enter a description for the book"><%= bookToEdit.description %></textarea>
+  </div>
+
+<div class="form-group">
+    <label for="ratingBook">Rating:</label>
+    <select class="form-control" name="rating" id="ratingBook">
+        <option value="1" <%= bookToEdit.rating === 1 ? 'selected' : '' %>>1</option>
+        <option value="2" <%= bookToEdit.rating === 2 ? 'selected' : '' %>>2</option>
+        <option value="3" <%= bookToEdit.rating === 3 ? 'selected' : '' %>>3</option>
+        <option value="4" <%= bookToEdit.rating === 4 ? 'selected' : '' %>>4</option>
+        <option value="5" <%= bookToEdit.rating === 5 ? 'selected' : '' %>>5</option>
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="isbnBook">ISBN:</label>
+    <input type="text" class="form-control" name="isbn" id="isbnBook" aria-describedby="isbnHelp" placeholder="Enter the book ISBN" value="<%= bookToEdit.isbn %>">
+</div>
+
+<button type="submit" class="btn btn-primary margin_buttons">Submit</button>

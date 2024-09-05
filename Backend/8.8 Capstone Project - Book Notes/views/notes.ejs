@@ -1,0 +1,107 @@
+<!-- Header -->
+<%- include("partials/header.ejs") %>
+
+<div class="container">
+
+    <div class="center_text">
+        <h1 class="title_h1">Notes</h1>
+    </div>
+
+    <!-- Container with the book info; -->
+    <div class="container-with-books">
+        <div>
+            <div>
+                <h3><%= data[0].title %></h3>
+                <h5><%= data[0].author %></h5>
+            </div>
+
+            <div>
+                <!-- If the cover for the book exists will show,  -->
+                <% if (data[0].imagepath !== null) { %> 
+                    <img src="<%= data[0].imagepath %>" class="cover-img-of-book" alt="book cover image">
+                <% } else { %> <!-- if there is no cover for the book, will show the sentence; -->
+                    <p>No book cover available</p>
+                <% } %>
+            </div>
+
+            <div class="lead"> 
+                Date: <%=data[0].date_when_read.toLocaleDateString('en-GB', { timeZone: 'UTC' });%> <!-- Will format the timestamp; -->
+            </div>
+
+            <div>
+                <button class="btn btn-info size_some_buttons return_button_font_size margin_buttons" type="button" onclick="window.location.href='/'">Return to Home Page</button>
+            </div>
+        </div>
+
+        <!-- Container with the notes; -->
+        <div class="note-container">
+            <div>
+                <!-- If the user press the button to add a note, the form "trigger" the POST route and passes the value 
+                 of the note(from the textarea) to the backend and will save in the DB. -->
+                <form action="/notes/<%= bookId %>/add" method="POST"> 
+                    <div class="mb-3">
+                        <textarea class="form-control" name="newNoteData" autocomplete="off" rows="3" autofocus="true"></textarea>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary" type="submit">Add Note</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="note-container">
+                <!-- Container with the existent notes; -->
+                <% if (data[0].note !== null) { %> <!-- If the note exists, -->
+                    <% for (let i=0; i<data.length; i++) { %> <!-- will iterate, and render the notes, for the specific book id; -->
+                        <ul>
+                            <li class="li-square">
+                                <div>
+                                    <!-- Will render the existent notes; -->
+                                    <div id="note<%= data[i].id %>" class="lead div_note"><%- data[i].note %></div> 
+
+                                    <!-- When the user press the edit button, will "trigger" the function handler, and will hide the the note, delete button and 
+                                     the edit button, as well will show the textarea with the done button, to edit the text and save; -->
+                                    <input type="image" id="edit<%= data[i].id %>" class="edit-delete-icon" onclick="handler('<%= data[i].id %>')" alt="Edit" src="/images/edit-24.png" />
+
+                                    <!-- if the user press the delete button, the form will "trigger" the POST rout, and will delete the note with the specific id; -->
+                                    <form class="formNotes" action="/notes/<%= data[i].id %>/delete" method="post">
+                                        <input type="hidden" name="bookId" value="<%= data[i].book_id %>">
+                                        <input type="image" id="delete<%= data[i].id %>" class="edit-delete-icon" onclick="return confirm('Are you sure you want to delete this note?')" alt="Delete" src="/images/delete-24.png"  />
+                                    </form>     
+                                </div>
+                                <div>
+                                    <!-- If press the done button, the form will "trigger" the POST route, and will save the new info(note) in the DB  -->
+                                    <form class="size_form_edit" action="/notes/<%= data[i].id %>/update" method="post">
+                                        <input type="hidden" name="bookId" value="<%= data[i].book_id %>">
+                                        <div class="mb-1">
+                                            <textarea id="input<%= data[i].id %>" class="form-control" name="noteToUpdate" autocomplete="off" rows="3" autofocus="true" hidden="true"><%- data[i].note %></textarea>
+                                        </div>
+                                        <button id="done<%= data[i].id %>" class="btn btn-primary" type="submit" hidden>Done</button>
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                    <% } %>
+                <% } else { %> <!-- If there is no notes; -->
+                    <div class="center_text">
+                        <p class="lead">There are no notes yet. Try to create one.</p>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<script>
+    // Function to modifie the visibility of the elements;
+    function handler(id) {
+        document.getElementById("note" + id).setAttribute("hidden", true);
+        document.getElementById("edit" + id).setAttribute("hidden", true);
+        document.getElementById("delete" + id).setAttribute("hidden", true);
+        document.getElementById("done" + id).removeAttribute("hidden", true);
+        document.getElementById("input" + id).removeAttribute("hidden", true);
+    }
+</script>
+
+<!-- Footer -->
+<%- include("partials/footer.ejs") %>

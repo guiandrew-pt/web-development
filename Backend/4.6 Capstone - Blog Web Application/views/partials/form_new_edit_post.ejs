@@ -1,0 +1,19 @@
+<div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address:</label>
+    <input type="email" name="emailPost" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email..." value="<%= post.emailPost %>">
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+</div>
+<div class="mb-3">
+    <label for="userName" class="form-label">Username:</label>
+    <input type="text" name="username" class="form-control" id="userName" placeholder="Username..." value="<%= post.username %>">
+</div>
+<div class="mb-3">
+    <label for="titlePost" class="form-label">Title For Post:</label>
+    <input type="text" name="titlePost" class="form-control" id="titlePost" placeholder="Title Post..." value="<%= post.titlePost %>">
+</div>
+<div class="mb-3">
+    <label for="textForThePost" class="form-label">Write your post:</label>
+    <textarea class="form-control" placeholder="Post..." name="textPost" id="textForThePost" style="height: 100px"><%= post.textPost %></textarea>
+</div>
+
+<button type="submit" class="btn btn-primary mb-5">Submit</button>

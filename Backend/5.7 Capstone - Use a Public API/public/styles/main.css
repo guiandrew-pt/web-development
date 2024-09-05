@@ -1,0 +1,19 @@
+.smallLetters {
+    font-size: 0.8rem;
+}
+
+.footerEndPage {
+   position: fixed;
+   bottom: 0;
+   width: 100%;
+   height: 20px;
+   text-align:center;
+}
+
+.profile {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-top: 1rem;
+}

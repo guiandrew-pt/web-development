@@ -1,0 +1,26 @@
+<% if (locals.posts && posts.length > 0) { %>
+        
+        <% for(let i = 0; i < posts.length; i++) { %>
+
+            <div class="card mb-5 backgroundImagePosts">
+                <h5 class="card-header"><%= posts[i].titlePost %></h5>
+                <div class="card-body">
+                    <p class="card-text mb-2 cropText"><%= posts[i].textPost.substring(0,12) %>...</p>
+                    <div class="card-subtitle text-muted mb-2 smallLetters">
+                        <label><%= posts[i].username %></label>,
+                        <label><%= posts[i].datePost %></label>
+                    </div>
+                    <a href="/read_post/:<%= posts[i].id %>" class="text-decoration-none btn btn-primary">Read More</a>
+                    <a href="/edit/:<%= posts[i].id %>" class="text-decoration-none btn btn-light">Edit</a>
+
+                    <form action="/delete/<%= posts[i].id %>" method="POST" class="d-inline">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div> 
+
+        <% } %>
+
+<% } else { %>
+    <h4>There is no posts, yet. Try create one!</h4>
+<% } %>

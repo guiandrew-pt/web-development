@@ -1,0 +1,18 @@
+<!-- Header -->
+<%- include("partials/header.ejs") %>
+
+<div class="container">
+    <% if (bookToEdit && bookToEdit.id !== 0) { %>
+
+        <!-- Makes POST request to / edit a book -->
+        <form action="/book/:<%= bookToEdit.id %>/update" method="POST">
+            <%- include("partials/form_new_edit_book.ejs") %>
+        </form>
+
+    <% } else { %> 
+        <p class="lead">Book entry not available.</p>
+    <% } %>
+</div>
+
+<!-- Footer -->
+<%- include("partials/footer.ejs") %>

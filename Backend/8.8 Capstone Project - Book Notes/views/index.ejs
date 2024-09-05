@@ -1,0 +1,86 @@
+<!-- Header -->
+<%- include("partials/header.ejs") %>
+
+<div class="container">
+
+    <div class="center_text">
+        <h1 class="title_h1">Books already read</h1>
+
+        <!-- This is the sort dropdown menu, will allow the user to choose the options within; -->
+        <!-- It will "trigger" the GET rout "/"(the route of the home page), and passes the value as a query parameter; -->
+        <div>
+            <form action="/" method="get">
+                <label for="sorting-dropdown">Sort Books by:</label>
+                <select name="sort" id="sorting-dropdown" onchange="this.form.submit()" class="custom-select">
+                    <option value="title" <% if (sortOption === "title" || sortOption === undefined) { %>selected<% } %>>Title</option>
+                    <option value="date" <% if (sortOption === "date") { %>selected<% } %>>Date read</option>
+                    <option value="rating" <% if (sortOption === "rating") { %>selected<% } %>>Rating</option>
+                </select>
+            </form>
+        </div>
+    </div>
+
+    <!-- Container with the books;  -->
+    <% if (data && data.length !== 0) { %> <!-- If data exists and data length is not 0, -->
+        <% for (let i=0; i<data.length; i++) { %> <!--  will iterate; -->
+            <div class="container-with-books">
+                <div class="col1">
+                    <div>
+                        <% if (data[i].imagepath !== null) { %> <!-- If the book cover exists will render; -->
+                            <img src="<%= data[i].imagepath %>" class="cover-img-of-book" alt="book cover image">
+                        <% } else { %>
+                            <p>No book cover available</p>
+                        <% } %>
+                    </div>
+                    <div class="lead timstamp-margin"> <!-- Will format the timestamp; -->
+                        Date: <%=data[i].date_when_read.toLocaleDateString('en-GB', { timeZone: 'UTC' });%> 
+                    </div> 
+                    <div><!-- When the button "View notes" is press, the form will render the GET route to show the notes about the specific book id; -->
+                        <form action="/notes/<%= data[i].id %>" method="get">
+                            <button class="btn btn-primary size_some_buttons margin_buttons" type="submit">View Notes</button>
+                        </form>
+                    </div>
+                    <div><!-- If you press the delete button, the form will "trigger" the POST rout to delete the book id; -->
+                        <form action="/book/<%= data[i].id %>/delete" method="post">
+                            <button type="submit" class="btn btn-danger size_some_buttons" onclick="return confirm('Are you sure you want to delete this book?')">Delete Book</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col2">
+                    
+                    <% if (data && data.length !== 0) { %> <!-- If data exists and data length is not 0, will render the data(info) of the book; '-->
+                        <div>
+                            <h2><%= data[i].title %></h2>
+                            <p class="text-size">by <%= data[i].author %></p>
+                            <h4>Description</h4>
+                            <p class="text-size"><%- data[i].description %></p>
+                        </div>
+                        
+                        <!-- This will show the stars amount, will be the rating for the book id; -->
+                        <div class="container-with-the-stars">
+                            <% const rating = data[i].rating; %>
+                            <% for (let i=0; i<rating; i++) { %>
+                                <img src="images/star-filled-48.png" class="star-icon" alt="filled star icon">
+                            <% } %>
+                            <% if (rating < 5) { %>
+                                <% const empties = 5 - data[i].rating; %>
+                                <% for (let i=0; i<empties; i++) { %>
+                                    <img src="images/star-empty-48.png" class="star-icon" alt="empty star icon">
+                                <% } %>
+                            <% } %>
+                        </div>
+
+                        <a href="/book/:<%= data[i].id %>/edit" id="buttonUpdate" class="text-decoration-none btn btn-warning">Edit Book Entry</a>
+
+                    <% } else { %>
+                        <p class="lead">Book data not available.</p>
+                    <% } %>
+                </div>
+            </div>
+        <% } %>
+    <% } %>
+
+</div>
+
+<!-- Footer -->
+<%- include("partials/footer.ejs") %>

@@ -1,0 +1,48 @@
+.container_all {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-end;
+}
+
+.container_title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.title_h1 {
+    font-family: "Sacramento", cursive;
+}
+
+.title_h2 {
+    font-family: "Montserrat", sans-serif;
+}
+
+.size {
+    max-width: 12%;
+    height: auto;
+}
+
+.size_personal {
+    max-width: 12%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.size_mid {
+    max-width: 25%;
+    height: auto;
+}
+
+.footer-link {
+    color: #1aa3ff;
+    font-family: "Montserrat", sans-serif;
+    margin: 10px 20px;
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    color: #f2f2f2;
+    text-decoration-line: underline;
+    cursor: auto;
+}

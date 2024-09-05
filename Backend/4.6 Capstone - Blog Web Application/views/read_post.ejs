@@ -1,0 +1,24 @@
+<!-- Header -->
+<%- include("partials/header.ejs") %>
+
+<h2 class="title_h1 mb-5">
+    Read your post here!
+</h2>
+
+<div class="card mb-2 backgroundImagePosts">
+    <div class="card-body">
+        <h3 class="h3"><%= post.titlePost %></h3>
+
+        <p class=""><%= post.textPost %></p>
+
+        <div class="card-subtitle text-muted mb-2 smallLetters">
+            <label><%= post.username %></label>,
+            <label><%= post.datePost %></label>
+        </div>
+    </div>
+</div>
+<a href="/" class="text-decoration-none btn btn-light mb-4">Home Page</a>
+
+
+<!-- Footer -->
+<%- include("partials/footer.ejs") %>

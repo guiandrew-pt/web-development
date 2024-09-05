@@ -1,0 +1,17 @@
+<!-- Header -->
+<%- include("partials/header.ejs") %>
+
+<h2 class="title_h1">
+    Edit your post here!
+</h2>
+
+<div class="card mb-5 backgroundImagePosts">
+    <div class="card-body">
+        <form action="/edit/:<%= post.id %>" method="POST">
+            <%- include("partials/form_new_edit_post.ejs") %>
+        </form>
+    </div>
+</div>
+
+<!-- Footer -->
+<%- include("partials/footer.ejs") %>

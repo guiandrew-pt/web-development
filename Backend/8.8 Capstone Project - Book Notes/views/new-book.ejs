@@ -1,0 +1,12 @@
+<!-- Header -->
+<%- include("partials/header.ejs") %>
+
+<div class="container">
+    <!-- Makes POST request to /register a new book -->
+    <form action="/new-book/add" method="POST">
+        <%- include("partials/form_new_edit_book.ejs") %>
+    </form>
+</div>
+
+<!-- Footer -->
+<%- include("partials/footer.ejs") %>

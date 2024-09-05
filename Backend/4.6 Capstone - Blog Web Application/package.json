@@ -1,0 +1,17 @@
+{
+  "name": "4.6-capstone---blog-web-application",
+  "version": "1.0.0",
+  "description": "Project - Blog Web Application",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "GuiAndrew",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "npm": "^10.8.2"
+  }
+}

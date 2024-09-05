@@ -1,0 +1,17 @@
+<!-- Header -->
+<%- include("partials/header.ejs") %>
+
+<h2 class="title_h1">
+    Write your post here!
+</h2>
+
+<div class="card mb-5 backgroundImagePosts">
+    <div class="card-body">
+        <form action="/new_post" method="POST">
+            <%- include("partials/form_new_edit_post.ejs") %>
+        </form>
+    </div>
+</div>
+
+<!-- Footer -->
+<%- include("partials/footer.ejs") %>

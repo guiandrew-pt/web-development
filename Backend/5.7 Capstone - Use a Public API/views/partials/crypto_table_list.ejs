@@ -1,0 +1,49 @@
+<div class="card bg-dark-subtle mb-2">
+    <div class="card-body">
+        <table id="crypto_table" class="table table-success table-striped caption-top mb-0">
+            <caption>List of Crypto</caption>
+            <thead>
+                <tr class="table-info">
+                    <th scope="col">#</th>
+                    <th scope="col">Crypto Name</th>
+                    <th scope="col">Price (24h)</th>
+                    <th scope="col">Volume (24h)</th>
+                    <th scope="col">Last Trade Price</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <% if (locals.data && data.length) { %>
+                    <% for(let i = 0; i < data.length; i++) { %>
+                        <tr>
+                            <th>
+                                <h6 scope="row" class="mb-1"><%= i + 1 %></h6>
+                            </th>
+                            <td>
+                                <h6 class="mb-1"><%= data[i].symbol %></h6>
+                            </td>
+                            <td>
+                                <h6 class="mb-1"><%= data[i].price_24h %></h6>
+                            </td>
+                            <td>
+                                <h6 class="mb-1"><%= data[i].volume_24h %></h6>
+                            </td>
+                            <td>
+                                <h6 class="mb-1"><%= data[i].last_trade_price %></h6>
+                            </td>
+                        </tr>
+
+                    <% } %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="4">
+                            <h6 class="mb-1">There is no Cryto to show. Try again later.</h6>
+                        </td>
+                    </tr>
+                <% } %>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+

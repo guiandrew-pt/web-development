@@ -1,0 +1,17 @@
+{
+  "name": "5.6-secrets-project",
+  "version": "1.0.0",
+  "description": "Learn axios and api's",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "GuiAndrew",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2"
+  }
+}
