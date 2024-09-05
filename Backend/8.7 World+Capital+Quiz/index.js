@@ -43,7 +43,7 @@ let currentQuestion = {};
 app.get('/', async (req, res) => {
   totalCorrect = 0;
   await nextQuestion();
-  console.log(currentQuestion);
+  // console.log(currentQuestion);
   res.render('index.ejs', { question: currentQuestion });
 });
 
